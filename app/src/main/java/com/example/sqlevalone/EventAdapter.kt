@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 class EventAdapter: RecyclerView.Adapter<EventViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         TODO("Not yet implemented")
     }

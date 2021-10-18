@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
 
         databaseHandler = DatabaseHandler(this)
-        floatingActionButtonAdd.setOnClickListener {
+        floatingActionButton.setOnClickListener {
             databaseHandler.insertRoutine("Event One","this is first event",
                 "12/08/2021","Bangalore",1200)
         }

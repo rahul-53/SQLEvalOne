@@ -44,6 +44,35 @@ class DatabaseHandler(private val context: Context): SQLiteOpenHelper(context, "
             Toast.makeText(context, "data inserted", Toast.LENGTH_SHORT).show()
         }
     }
+    fun updateRoutine(id:Int, newEventName:String, newEventDesc : String, newEventDate:String, newEventLocation:String, newEventPrice:Int) {
+        val db:SQLiteDatabase = writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(EVENT_NAME, newEventName)
+        contentValues.put(EVENT_DESC, newEventDesc)
+        contentValues.put(EVENT_DATE, newEventDate)
+        contentValues.put(EVENT_LOCATION, newEventLocation)
+        contentValues.put(EVENT_PRICE, newEventPrice)
+        val updatedRows = db.update(TABLE_NAME, contentValues, "id=$id",null)
+
+        if (updatedRows>0){
+            Toast.makeText(context, "data updated successfully", Toast.LENGTH_SHORT).show()
+        }
+        else{
+            Toast.makeText(context, "error while updating data ", Toast.LENGTH_SHORT).show()
+        }
+    }
+    fun deleteRoutine(id: Int){
+        val db:SQLiteDatabase = writableDatabase
+        val contentValues = ContentValues()
+        val deletedRow = db.delete(TABLE_NAME,"id=$id",null)
+
+        if (deletedRow>0){
+            Toast.makeText(context, "data deleted successfully", Toast.LENGTH_SHORT).show()
+        }
+        else{
+            Toast.makeText(context, "error while deleting  ", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
 
