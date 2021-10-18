@@ -2,6 +2,7 @@ package com.example.sqlevalone
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
@@ -73,9 +74,40 @@ class DatabaseHandler(private val context: Context): SQLiteOpenHelper(context, "
             Toast.makeText(context, "error while deleting  ", Toast.LENGTH_SHORT).show()
         }
     }
-    fun searchRoutine(){
 
+    fun getRoutines():MutableList<EventModal>{
+        val eventList:MutableList<EventModal> = mutableListOf()
+        val db:SQLiteDatabase = readableDatabase
+        val query = "select * from $TABLE_NAME"
+        val queryCursor:Cursor = db.rawQuery(query, null)
+
+        if (queryCursor !=null && queryCursor.count>0){
+            queryCursor.moveToFirst()
+            do {
+                val idIndex:Int =queryCursor.getColumnIndex(EVENT_ID)
+                val nameIndex:Int =queryCursor.getColumnIndex(EVENT_NAME)
+                val descIndex:Int =queryCursor.getColumnIndex(EVENT_DESC)
+                val dateIndex:Int =queryCursor.getColumnIndex(EVENT_DATE)
+                val locationIndex:Int =queryCursor.getColumnIndex(EVENT_LOCATION)
+                val priceIndex:Int =queryCursor.getColumnIndex(EVENT_PRICE)
+
+                val id:Int = queryCursor.getInt(idIndex)
+                val name:String = queryCursor.getString(nameIndex)
+                val desc:String = queryCursor.getString(descIndex)
+                val date:String = queryCursor.getString(dateIndex)
+                val location:String = queryCursor.getString(locationIndex)
+                val price:Int = queryCursor.getInt(priceIndex)
+
+             val events = EventModal(id,name, desc, date,location, price)
+             eventList.add(events)
+            }while (queryCursor.moveToNext())
+        }
+        return eventList
     }
+
+//    fun searchRoutine(){
+//
+//    }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
 
