@@ -7,7 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 class EventAdapter(private val context:Context,
-                   private val eventList:MutableList<EventModal>
+                   private val eventList:MutableList<EventModal>,
+                   val listener: OnClickListener
 
 ): RecyclerView.Adapter<EventViewHolder>() {
 
@@ -23,7 +24,7 @@ class EventAdapter(private val context:Context,
         holder.event_desc.text = eventModal.eventDesc
         holder.event_date.text = eventModal.eventDate
         holder.event_location.text = eventModal.eventLocation
-        //holder.event_price.Int = eventModal.event
+        holder.event_price.text = eventModal.eventPrice
     }
 
     override fun getItemCount(): Int {

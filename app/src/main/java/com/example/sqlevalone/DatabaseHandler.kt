@@ -25,10 +25,10 @@ class DatabaseHandler(private val context: Context): SQLiteOpenHelper(context, "
                "$EVENT_DESC TEXT" +
                "$EVENT_DATE TEXT" +
                "$EVENT_LOCATION TEXT" +
-               "$EVENT_PRICE INTEGER )"
+               "$EVENT_PRICE TEXT )"
         db?.execSQL(createQuery)
     }
-    fun insertRoutine(eventName:String, eventDesc : String, eventDate:String, eventLocation:String, eventPrice:Int){
+    fun insertRoutine(eventName:String, eventDesc : String, eventDate:String, eventLocation:String, eventPrice:String){
         val db:SQLiteDatabase = writableDatabase
         val contentValues = ContentValues()
         contentValues.put(EVENT_NAME, eventName)
@@ -45,7 +45,7 @@ class DatabaseHandler(private val context: Context): SQLiteOpenHelper(context, "
             Toast.makeText(context, "data inserted", Toast.LENGTH_SHORT).show()
         }
     }
-    fun updateRoutine(id:Int, newEventName:String, newEventDesc : String, newEventDate:String, newEventLocation:String, newEventPrice:Int) {
+    fun updateRoutine(id:Int, newEventName:String, newEventDesc : String, newEventDate:String, newEventLocation:String, newEventPrice:String) {
         val db:SQLiteDatabase = writableDatabase
         val contentValues = ContentValues()
         contentValues.put(EVENT_NAME, newEventName)
@@ -96,7 +96,7 @@ class DatabaseHandler(private val context: Context): SQLiteOpenHelper(context, "
                 val desc:String = queryCursor.getString(descIndex)
                 val date:String = queryCursor.getString(dateIndex)
                 val location:String = queryCursor.getString(locationIndex)
-                val price:Int = queryCursor.getInt(priceIndex)
+                val price:String = queryCursor.getString(priceIndex)
 
              val events = EventModal(id,name, desc, date,location, price)
              eventList.add(events)
