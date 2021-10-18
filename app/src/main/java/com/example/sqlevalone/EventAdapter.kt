@@ -4,12 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 
 class EventAdapter(private val context:Context,
                    private val eventList:MutableList<EventModal>,
-                   val listener: OnClickListener
-
+                   listener: OnClickListener
 ): RecyclerView.Adapter<EventViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
@@ -30,4 +31,5 @@ class EventAdapter(private val context:Context,
     override fun getItemCount(): Int {
         return eventList.size
     }
+
 }
