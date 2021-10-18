@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+abstract class MainActivity : AppCompatActivity() {
+
     private lateinit var databaseHandler:DatabaseHandler
+    val eventList:MutableList<EventModal> = mutableListOf()
+    lateinit var mAdapter:EventAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -17,4 +21,6 @@ class MainActivity : AppCompatActivity() {
                 "12/08/2021","Bangalore",1200)
         }
     }
+
+
 }

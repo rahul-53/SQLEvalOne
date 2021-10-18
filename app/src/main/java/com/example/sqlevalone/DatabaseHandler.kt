@@ -73,6 +73,9 @@ class DatabaseHandler(private val context: Context): SQLiteOpenHelper(context, "
             Toast.makeText(context, "error while deleting  ", Toast.LENGTH_SHORT).show()
         }
     }
+    fun searchRoutine(){
+
+    }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
 
